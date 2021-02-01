@@ -28,6 +28,9 @@ import twitter from './images/twitter.png';
 import youtube from './images/youtube.png';
 
 const teal = '#2E6764';
+const orange = '#ff9869';
+
+const pageHorizontalMargin = '25px';
 
 const headerStyles = css`
   display: flex;
@@ -35,11 +38,12 @@ const headerStyles = css`
   background-color: ${teal};
   color: #fff;
   position: fixed;
+  z-index: 10;
   width: 100%;
   top: 0;
 
   h1 {
-    margin: 0 auto 0 25px;
+    margin: 0 auto 0 ${pageHorizontalMargin};
     line-height: 60px;
 
     img {
@@ -61,15 +65,120 @@ const headerStyles = css`
     }
 
     &:last-child {
-      background-color: #ff9869;
+      background-color: ${orange};
       color: #103e41;
     }
   }
 `;
 
+const sectionGeneralStyles = css`
+  padding-left: ${pageHorizontalMargin};
+  padding-right: ${pageHorizontalMargin};
+`;
+
 const sectionOneStyles = css`
   background-color: ${teal};
   color: #fff;
+  padding-top: 100px;
+  padding-bottom: 400px;
+
+  h1 {
+    text-transform: uppercase;
+    font-size: 12.5px;
+    font-weight: 800;
+    letter-spacing: 0.7px;
+    color: #84f7d2;
+    margin: 0 0 48px;
+  }
+
+  p {
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: -0.4px;
+    line-height: 1.27;
+    width: 70%;
+    margin: 0 0 48px;
+  }
+
+  button {
+    line-height: 50px;
+    border: 2px solid #fff;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 900;
+    padding: 0 40px;
+    background: transparent;
+  }
+`;
+
+const plantInFieldDiagram = css`
+  position: absolute;
+  width: calc(100% - (${pageHorizontalMargin} * 2));
+
+  img:nth-child(1) {
+    position: absolute;
+    z-index: 2;
+    top: -100px;
+    right: 90px;
+    width: 240px;
+  }
+
+  img:nth-child(2) {
+    position: absolute;
+    z-index: 1;
+    top: 40px;
+    right: 220px;
+    width: 106px;
+  }
+
+  img:nth-child(3) {
+    position: absolute;
+    top: 80px;
+    left: 10px;
+    width: 800px;
+  }
+`;
+
+const pill = css`
+  position: absolute;
+  z-index: 3;
+  font-size: 11.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 28px;
+  padding: 0 14px;
+  border-radius: 14px;
+  color: #103e41;
+
+  i {
+    margin: 0 0 0 2px;
+    display: inline-block;
+    width: 0.83em;
+    height: 0.9em;
+    background-color: #fff;
+    border-radius: 50%;
+
+    &.dotLeft {
+      margin: 0 2px 0 0;
+    }
+  }
+`;
+
+const pillOrange = css`
+  background-color: ${orange};
+  top: -1px;
+  left: 469px;
+`;
+const pillGreen = css`
+  background-color: #6dedbe;
+  top: -48px;
+  right: 87px;
+`;
+const pillYellow = css`
+  background-color: #ffd976;
+  top: 52px;
+  right: 72px;
 `;
 
 function App() {
@@ -85,17 +194,49 @@ function App() {
         <a href="#1">Customer login</a>
       </header>
 
-      <section css={sectionOneStyles}>
+      <section
+        css={css`
+          ${sectionGeneralStyles}
+          ${sectionOneStyles}
+        `}
+      >
         <h1>Feeding our world and our future</h1>
         <p>
           We build innovative systems and processes that allow farmers to
           streamline operations and increase food production efficiency.
         </p>
+
         <button>Watch the video</button>
 
-        <img src={plantSmall} alt="" />
-        <img src={callout} alt="" />
-        <img src={fieldFull} alt="" />
+        <div css={plantInFieldDiagram}>
+          <img src={plantSmall} alt="" />
+          <img src={callout} alt="" />
+          <img src={fieldFull} alt="" />
+          <div
+            css={css`
+              ${pill}
+              ${pillOrange}
+            `}
+          >
+            Size: 5 <i />
+          </div>
+          <div
+            css={css`
+              ${pill}
+              ${pillGreen}
+            `}
+          >
+            <i className="dotLeft" /> Plant ID: 16
+          </div>
+          <div
+            css={css`
+              ${pill}
+              ${pillYellow}
+            `}
+          >
+            <i className="dotLeft" /> Stress: 75%
+          </div>
+        </div>
       </section>
 
       <section>
